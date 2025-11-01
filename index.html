@@ -1,63 +1,740 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Niguse Tadele Health Consultancy Service (NTHCS)</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
-    body{color:#333;background:#fff;line-height:1.6;}
-    header{background:#005b96;color:#fff;text-align:center;padding:60px 20px;}
-    header h1{font-size:2.3rem;margin-bottom:10px;}
-    nav{background:#003f63;display:flex;flex-wrap:wrap;justify-content:center;}
-    nav a{color:#fff;text-decoration:none;padding:14px 20px;display:block;}
-    nav a:hover{background:#0074cc;}
-    section{padding:60px 20px;max-width:1000px;margin:auto;}
-    h2{color:#005b96;margin-bottom:10px;}
-    .cta a{background:#005b96;color:#fff;padding:10px 20px;border-radius:6px;text-decoration:none;}
-    .cta a:hover{background:#0074cc;}
-    footer{background:#003f63;color:#fff;text-align:center;padding:30px 10px;font-size:0.9rem;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niguse Tadele Health Consultancy Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #005b96;
+            --secondary: #003f63;
+            --accent: #00a896;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: var(--secondary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background: var(--light);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        /* Hero Section */
+        #home {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(rgba(0, 91, 150, 0.9), rgba(0, 63, 99, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23003f63" width="1200" height="800"/></svg>');
+            background-size: cover;
+            color: white;
+        }
+
+        #home h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background: #008a7a;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .mission-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .value-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .value-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 200px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-info h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .member-role {
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .service-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Preview Section */
+        .projects-preview {
+            text-align: center;
+        }
+
+        .projects-preview p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        .projects-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--dark);
+            font-size: 1rem;
+        }
+
+        .featured-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-preview-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-preview-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-preview-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+        }
+
+        .project-preview-body {
+            padding: 1.5rem;
+        }
+
+        .project-preview-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .project-preview-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .featured-projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Niguse Tadele Health Consultancy Service (NTHCS)</h1>
-    <p>Advancing Evidence-Based Health Solutions for a Healthier Ethiopia</p>
-  </header>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo">Niguse Tadele Health Consultancy</div>
+            <div class="tagline">Evidence-Based Health Solutions for Ethiopia</div>
+        </div>
+    </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="projects.html">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="projects.html">Projects</a>
+            <a href="#team">Our Team</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-  <section id="about">
-    <h2>About Us</h2>
-    <p>NTHCS strengthens public health systems through applied research, evaluation, and capacity building. We work with partners across Ethiopia to turn data into action and evidence into policy.</p>
-  </section>
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Transforming Health Evidence into Impactful Programs</h2>
+        <p>We provide rigorous research, monitoring & evaluation, and capacity building services to strengthen health systems and improve outcomes across Ethiopia.</p>
+        <div>
+            <a href="#contact" class="cta-button">Partner With Us</a>
+            <a href="projects.html" class="cta-button secondary">View Our Projects</a>
+        </div>
+    </section>
 
-  <section id="services">
-    <h2>Core Services</h2>
-    <ul>
-      <li>Health research, surveys, and data analysis</li>
-      <li>Monitoring, evaluation, and learning (MEL)</li>
-      <li>Program design & technical assistance</li>
-      <li>Capacity building and training</li>
-      <li>Health education and community engagement</li>
-    </ul>
-    <div class="cta" style="margin-top:20px;">
-      <a href="projects.html">View Previous Projects →</a>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Our Consultancy</h2>
+        
+        <div class="mission-box">
+            <h3>Our Mission</h3>
+            <p>Niguse Tadele Health Consultancy Service delivers evidence-based research, evaluation, and capacity building to support health system strengthening in Ethiopia. We work with government institutions, NGOs, and international partners to generate actionable insights that drive program improvement and policy decisions.</p>
+        </div>
+        
+        <h3>Our Values</h3>
+        <div class="values-grid">
+            <div class="value-card">
+                <h4>Integrity</h4>
+                <p>We uphold the highest ethical standards in all our research and engagements.</p>
+            </div>
+            <div class="value-card">
+                <h4>Quality</h4>
+                <p>We deliver rigorous, evidence-based outputs that meet international standards.</p>
+            </div>
+            <div class="value-card">
+                <h4>Collaboration</h4>
+                <p>We partner with stakeholders and communities to ensure locally relevant solutions.</p>
+            </div>
+            <div class="value-card">
+                <h4>Impact</h4>
+                <p>We focus on generating insights that lead to tangible improvements in health outcomes.</p>
+            </div>
+        </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p><b>Email:</b> info@nthcs.org | <b>Phone:</b> +251-913-163-130 / +251-932-217-069</p>
-  </section>
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h4>Health Research & Evaluation</h4>
+                <p>Comprehensive study design, implementation, and analysis for public health programs and interventions.</p>
+            </div>
+            <div class="service-card">
+                <h4>Monitoring & Evaluation Systems</h4>
+                <p>Development and implementation of robust M&E frameworks, tools, and data quality assurance protocols.</p>
+            </div>
+            <div class="service-card">
+                <h4>Survey Design & Implementation</h4>
+                <p>Nationwide and sub-national surveys using digital data collection platforms (ODK, SurveyCTO, KoboToolbox).</p>
+            </div>
+            <div class="service-card">
+                <h4>Capacity Building & Training</h4>
+                <p>Workshops and mentorship on research methods, M&E, data analysis, and evidence use for decision-making.</p>
+            </div>
+            <div class="service-card">
+                <h4>Program Design & Technical Assistance</h4>
+                <p>Support for health program planning, proposal development, and implementation strategies.</p>
+            </div>
+            <div class="service-card">
+                <h4>Policy Analysis & Advocacy</h4>
+                <p>Evidence synthesis and policy briefs to inform health policy and strategic planning.</p>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    © 2025 Niguse Tadele Health Consultancy Service
-  </footer>
+    <!-- Projects Preview Section -->
+    <section id="projects-preview" class="projects-preview">
+        <h2>Our Impactful Work</h2>
+        <p>We have successfully delivered 40+ projects across Ethiopia, working with leading health organizations to generate evidence and strengthen health systems.</p>
+        
+        <div class="projects-stats">
+            <div class="stat-box">
+                <div class="stat-number">40+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Partner Organizations</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Regions of Ethiopia</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Technical Reports</div>
+            </div>
+        </div>
+        
+        <h3>Featured Projects</h3>
+        <div class="featured-projects">
+            <div class="project-preview-card">
+                <div class="project-preview-header">
+                    <h4>Sennay Malaria Project Evaluation</h4>
+                </div>
+                <div class="project-preview-body">
+                    <div class="project-preview-meta">
+                        <span>HDAMA / Malaria Consortium</span>
+                        <span>2024-2025</span>
+                    </div>
+                    <p>Mid-term evaluation of innovative approaches to reduce malaria burden among seasonal mobile workers in Amhara Region.</p>
+                    <a href="projects.html" class="project-preview-link">View Project Details →</a>
+                </div>
+            </div>
+            
+            <div class="project-preview-card">
+                <div class="project-preview-header">
+                    <h4>National FP Methods Availability Survey</h4>
+                </div>
+                <div class="project-preview-body">
+                    <div class="project-preview-meta">
+                        <span>CHAI / PMA</span>
+                        <span>2024</span>
+                    </div>
+                    <p>National health facility assessment on availability of family planning commodities and services.</p>
+                    <a href="projects.html" class="project-preview-link">View Project Details →</a>
+                </div>
+            </div>
+            
+            <div class="project-preview-card">
+                <div class="project-preview-header">
+                    <h4>WaSH in Health Facilities</h4>
+                </div>
+                <div class="project-preview-body">
+                    <div class="project-preview-meta">
+                        <span>International Vaccine Institute</span>
+                        <span>2022</span>
+                    </div>
+                    <p>Multi-site health facility survey on water, sanitation and hygiene for cholera control and prevention.</p>
+                    <a href="projects.html" class="project-preview-link">View Project Details →</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <a href="projects.html" class="cta-button">View All Projects</a>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-img">NT</div>
+                <div class="member-info">
+                    <h3>Niguse Tadele</h3>
+                    <div class="member-role">Owner & Lead Consultant</div>
+                    <p>Founder with extensive experience in health research, survey coordination, and project management. Specializes in maternal and child health, SRH, and data science applications.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">TG</div>
+                <div class="member-info">
+                    <h3>Tomas Getahun</h3>
+                    <div class="member-role">Senior Public Health Consultant</div>
+                    <p>10+ years in health systems strengthening, M&E, and program management. Experienced with donor-funded projects and field coordination.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">GS</div>
+                <div class="member-info">
+                    <h3>Dr. Girum Sebsibie Teshome</h3>
+                    <div class="member-role">Senior Health Research Advisor</div>
+                    <p>PhD-level expert with 17+ years in pediatrics, neonatal nursing, and academic leadership. Extensive experience in research supervision and curriculum development.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">MC</div>
+                <div class="member-info">
+                    <h3>Melkie Chernet Leykun</h3>
+                    <div class="member-role">Biostatistician & Data Scientist</div>
+                    <p>15+ years in statistical analysis, survey design, and data management. Proficient in R, STATA, Python, and large-scale dataset management.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">SD</div>
+                <div class="member-info">
+                    <h3>Dr. Solomon Abrha Damtew</h3>
+                    <div class="member-role">Epidemiologist</div>
+                    <p>11+ years in academic research and national survey coordination. Specializes in maternal and child health epidemiology and chronic disease research.</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-img">WT</div>
+                <div class="member-info">
+                    <h3>Wendmagegnehu Teju</h3>
+                    <div class="member-role">SBC & Nutrition Specialist</div>
+                    <p>8+ years in social and behavior change, nutrition, and WASH programming. Expertise in human-centered design and community engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div>
+                <h3>Get In Touch</h3>
+                <p>Ready to discuss your project needs? Contact us for consultations, proposals, or partnership opportunities.</p>
+                
+                <div class="contact-info">
+                    <p><strong>Email:</strong> niguse.tadele@aau.edu.et</p>
+                    <p><strong>Phone:</strong> +251 913 163 130</p>
+                    <p><strong>Address:</strong> Addis Ababa, Ethiopia</p>
+                </div>
+                
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li>Health Research & Evaluation</li>
+                    <li>Monitoring & Evaluation Systems</li>
+                    <li>Survey Design & Implementation</li>
+                    <li>Capacity Building & Training</li>
+                    <li>Data Analysis & Visualization</li>
+                    <li>Program Design & Strategy</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3>Send Us a Message</h3>
+                <form id="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Organization">
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">Niguse Tadele Health Consultancy</div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="#team">Team</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                © 2025 Niguse Tadele Health Consultancy Service. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form handling (for demo purposes)
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will respond within 2 business days.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
